@@ -19,6 +19,9 @@
 		27F9BA5318F775E4003DFB84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F9BA3B18F775E4003DFB84 /* UIKit.framework */; };
 		27F9BA5B18F775E4003DFB84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 27F9BA5918F775E4003DFB84 /* InfoPlist.strings */; };
 		27F9BA5D18F775E4003DFB84 /* XXMenuDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F9BA5C18F775E4003DFB84 /* XXMenuDemoTests.m */; };
+		27FC895018F78DE7005CB3CF /* XXMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC894F18F78DE7005CB3CF /* XXMenuViewController.m */; };
+		27FC895318F78EC3005CB3CF /* XXLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC895218F78EC3005CB3CF /* XXLeftMenuViewController.m */; };
+		27FC895618F78ECD005CB3CF /* XXRightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC895518F78ECD005CB3CF /* XXRightMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,12 @@
 		27F9BA5818F775E4003DFB84 /* XXMenuDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XXMenuDemoTests-Info.plist"; sourceTree = "<group>"; };
 		27F9BA5A18F775E4003DFB84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		27F9BA5C18F775E4003DFB84 /* XXMenuDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XXMenuDemoTests.m; sourceTree = "<group>"; };
+		27FC894E18F78DE7005CB3CF /* XXMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMenuViewController.h; sourceTree = "<group>"; };
+		27FC894F18F78DE7005CB3CF /* XXMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMenuViewController.m; sourceTree = "<group>"; };
+		27FC895118F78EC3005CB3CF /* XXLeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLeftMenuViewController.h; sourceTree = "<group>"; };
+		27FC895218F78EC3005CB3CF /* XXLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLeftMenuViewController.m; sourceTree = "<group>"; };
+		27FC895418F78ECD005CB3CF /* XXRightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXRightMenuViewController.h; sourceTree = "<group>"; };
+		27FC895518F78ECD005CB3CF /* XXRightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXRightMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +116,7 @@
 		27F9BA3D18F775E4003DFB84 /* XXMenuDemo */ = {
 			isa = PBXGroup;
 			children = (
+				27FC894D18F78CDF005CB3CF /* XXMenuClass */,
 				27F9BA4618F775E4003DFB84 /* XXAppDelegate.h */,
 				27F9BA4718F775E4003DFB84 /* XXAppDelegate.m */,
 				27F9BA4918F775E4003DFB84 /* Images.xcassets */,
@@ -142,6 +152,19 @@
 				27F9BA5918F775E4003DFB84 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		27FC894D18F78CDF005CB3CF /* XXMenuClass */ = {
+			isa = PBXGroup;
+			children = (
+				27FC894E18F78DE7005CB3CF /* XXMenuViewController.h */,
+				27FC894F18F78DE7005CB3CF /* XXMenuViewController.m */,
+				27FC895118F78EC3005CB3CF /* XXLeftMenuViewController.h */,
+				27FC895218F78EC3005CB3CF /* XXLeftMenuViewController.m */,
+				27FC895418F78ECD005CB3CF /* XXRightMenuViewController.h */,
+				27FC895518F78ECD005CB3CF /* XXRightMenuViewController.m */,
+			);
+			path = XXMenuClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +263,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FC895318F78EC3005CB3CF /* XXLeftMenuViewController.m in Sources */,
 				27F9BA4818F775E4003DFB84 /* XXAppDelegate.m in Sources */,
 				27F9BA4418F775E4003DFB84 /* main.m in Sources */,
+				27FC895018F78DE7005CB3CF /* XXMenuViewController.m in Sources */,
+				27FC895618F78ECD005CB3CF /* XXRightMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +464,7 @@
 				27F9BA6218F775E4003DFB84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		27F9BA6318F775E4003DFB84 /* Build configuration list for PBXNativeTarget "XXMenuDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +473,7 @@
 				27F9BA6518F775E4003DFB84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
