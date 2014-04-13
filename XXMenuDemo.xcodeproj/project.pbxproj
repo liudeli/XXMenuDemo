@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2735607718F7B47D001B0F11 /* nav_menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 2735607518F7B47D001B0F11 /* nav_menu.png */; };
+		2735607818F7B47D001B0F11 /* nav_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2735607618F7B47D001B0F11 /* nav_menu@2x.png */; };
 		27F9BA3818F775E4003DFB84 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F9BA3718F775E4003DFB84 /* Foundation.framework */; };
 		27F9BA3A18F775E4003DFB84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F9BA3918F775E4003DFB84 /* CoreGraphics.framework */; };
 		27F9BA3C18F775E4003DFB84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F9BA3B18F775E4003DFB84 /* UIKit.framework */; };
@@ -22,6 +24,9 @@
 		27FC895018F78DE7005CB3CF /* XXMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC894F18F78DE7005CB3CF /* XXMenuViewController.m */; };
 		27FC895318F78EC3005CB3CF /* XXLeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC895218F78EC3005CB3CF /* XXLeftMenuViewController.m */; };
 		27FC895618F78ECD005CB3CF /* XXRightMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC895518F78ECD005CB3CF /* XXRightMenuViewController.m */; };
+		27FC895A18F79091005CB3CF /* XXMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FC895918F79091005CB3CF /* XXMainViewController.m */; };
+		27FC895E18F7ABE8005CB3CF /* bgImg.png in Resources */ = {isa = PBXBuildFile; fileRef = 27FC895C18F7ABE8005CB3CF /* bgImg.png */; };
+		27FC895F18F7ABE8005CB3CF /* bgImg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 27FC895D18F7ABE8005CB3CF /* bgImg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2735607518F7B47D001B0F11 /* nav_menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav_menu.png; sourceTree = "<group>"; };
+		2735607618F7B47D001B0F11 /* nav_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_menu@2x.png"; sourceTree = "<group>"; };
 		27F9BA3418F775E4003DFB84 /* XXMenuDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XXMenuDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27F9BA3718F775E4003DFB84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		27F9BA3918F775E4003DFB84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -57,6 +64,10 @@
 		27FC895218F78EC3005CB3CF /* XXLeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLeftMenuViewController.m; sourceTree = "<group>"; };
 		27FC895418F78ECD005CB3CF /* XXRightMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXRightMenuViewController.h; sourceTree = "<group>"; };
 		27FC895518F78ECD005CB3CF /* XXRightMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXRightMenuViewController.m; sourceTree = "<group>"; };
+		27FC895818F79091005CB3CF /* XXMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXMainViewController.h; sourceTree = "<group>"; };
+		27FC895918F79091005CB3CF /* XXMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXMainViewController.m; sourceTree = "<group>"; };
+		27FC895C18F7ABE8005CB3CF /* bgImg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgImg.png; sourceTree = "<group>"; };
+		27FC895D18F7ABE8005CB3CF /* bgImg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgImg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +127,8 @@
 		27F9BA3D18F775E4003DFB84 /* XXMenuDemo */ = {
 			isa = PBXGroup;
 			children = (
+				27FC895B18F7ABE8005CB3CF /* images */,
+				27FC895718F78F9F005CB3CF /* showPages */,
 				27FC894D18F78CDF005CB3CF /* XXMenuClass */,
 				27F9BA4618F775E4003DFB84 /* XXAppDelegate.h */,
 				27F9BA4718F775E4003DFB84 /* XXAppDelegate.m */,
@@ -165,6 +178,26 @@
 				27FC895518F78ECD005CB3CF /* XXRightMenuViewController.m */,
 			);
 			path = XXMenuClass;
+			sourceTree = "<group>";
+		};
+		27FC895718F78F9F005CB3CF /* showPages */ = {
+			isa = PBXGroup;
+			children = (
+				27FC895818F79091005CB3CF /* XXMainViewController.h */,
+				27FC895918F79091005CB3CF /* XXMainViewController.m */,
+			);
+			path = showPages;
+			sourceTree = "<group>";
+		};
+		27FC895B18F7ABE8005CB3CF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				2735607518F7B47D001B0F11 /* nav_menu.png */,
+				2735607618F7B47D001B0F11 /* nav_menu@2x.png */,
+				27FC895C18F7ABE8005CB3CF /* bgImg.png */,
+				27FC895D18F7ABE8005CB3CF /* bgImg@2x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,8 +276,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FC895E18F7ABE8005CB3CF /* bgImg.png in Resources */,
+				2735607818F7B47D001B0F11 /* nav_menu@2x.png in Resources */,
 				27F9BA4218F775E4003DFB84 /* InfoPlist.strings in Resources */,
+				2735607718F7B47D001B0F11 /* nav_menu.png in Resources */,
 				27F9BA4A18F775E4003DFB84 /* Images.xcassets in Resources */,
+				27FC895F18F7ABE8005CB3CF /* bgImg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +303,7 @@
 				27FC895318F78EC3005CB3CF /* XXLeftMenuViewController.m in Sources */,
 				27F9BA4818F775E4003DFB84 /* XXAppDelegate.m in Sources */,
 				27F9BA4418F775E4003DFB84 /* main.m in Sources */,
+				27FC895A18F79091005CB3CF /* XXMainViewController.m in Sources */,
 				27FC895018F78DE7005CB3CF /* XXMenuViewController.m in Sources */,
 				27FC895618F78ECD005CB3CF /* XXRightMenuViewController.m in Sources */,
 			);
@@ -387,6 +425,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XXMenuDemo/XXMenuDemo-Prefix.pch";
 				INFOPLIST_FILE = "XXMenuDemo/XXMenuDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -400,6 +439,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "XXMenuDemo/XXMenuDemo-Prefix.pch";
 				INFOPLIST_FILE = "XXMenuDemo/XXMenuDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

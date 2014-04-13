@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXLeftMenuViewController : UIViewController
+@interface XXLeftMenuViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
 
 @end

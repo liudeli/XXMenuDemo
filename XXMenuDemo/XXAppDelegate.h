@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXMenuViewController.h"
 
 @interface XXAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) XXMenuViewController *XXMenuVC;
+
+//private method
++ (XXAppDelegate *)sharedAppDelegate;
 
 @end

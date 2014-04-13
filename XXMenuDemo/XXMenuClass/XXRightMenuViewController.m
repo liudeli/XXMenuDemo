@@ -8,6 +8,9 @@
 
 #import "XXRightMenuViewController.h"
 
+#define scaleValue 0.875
+#define menuViewWidth 250.0
+
 @interface XXRightMenuViewController ()
 
 @end
@@ -27,8 +30,37 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor clearColor];
+    
+    UITableView *tableList = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height*(1-scaleValue)/2, menuViewWidth, self.view.bounds.size.height*scaleValue) style:UITableViewStylePlain];
+    tableList.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
+    tableList.delegate = self;
+    tableList.dataSource = self;
+    [self.view addSubview:tableList];
 }
-
+#pragma mark tableViewDelegate;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40.0;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *identifer = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifer];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifer];
+    }
+    cell.backgroundColor = [UIColor clearColor];
+    cell.textLabel.textAlignment = NSTextAlignmentRight;
+    cell.textLabel.text = [NSString stringWithFormat:@"第%d个rightMenu",indexPath.row];
+    
+    return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"第%d个rightMenu",indexPath.row);
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

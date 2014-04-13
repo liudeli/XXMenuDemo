@@ -7,8 +7,14 @@
 //
 
 #import "XXAppDelegate.h"
+#import "XXMainViewController.h"
 
 @implementation XXAppDelegate
+@synthesize XXMenuVC;
+
++ (XXAppDelegate *)sharedAppDelegate {
+    return (XXAppDelegate *) [UIApplication sharedApplication].delegate;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -16,6 +22,13 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    XXMainViewController *mainVC = [[XXMainViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    XXMenuVC = [[XXMenuViewController alloc] initWithRootViewController:nav];
+    
+    self.window.rootViewController = XXMenuVC;
+    
     return YES;
 }
 

@@ -1,5 +1,5 @@
 //
-//  XXRightMenuViewController.h
+//  XXMainViewController.h
 //  XXMenuDemo
 //
 //  Created by shan xu on 14-4-11.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XXRightMenuViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface XXMainViewController : UIViewController
 
+@property(nonatomic, assign) NSInteger indexNum;
 @end

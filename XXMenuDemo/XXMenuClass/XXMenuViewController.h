@@ -7,7 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XXLeftMenuViewController.h"
+#import "XXRightMenuViewController.h"
 
-@interface XXMenuViewController : UIViewController
+typedef enum : NSUInteger {
+    RootOnEles = 0,
+    RootOnMain,
+    RootOnRightStatic,
+    RootOnLeftStatic,
+} rootStatus;
 
+@interface XXMenuViewController : UIViewController<UIGestureRecognizerDelegate>
+
+@property(nonatomic, strong) XXLeftMenuViewController *leftMenuView;
+@property(nonatomic, strong) XXRightMenuViewController *rightMenuView;
+@property(nonatomic, strong) UIViewController *rootVC;
+@property(nonatomic, assign) CGRect rootViewFrame;
+@property(nonatomic, assign) CGRect leftViewFrame;
+@property(nonatomic, assign) CGRect rightViewFrame;
+@property(nonatomic, assign) BOOL isMenuAnimate;//菜单正在移动
+@property(nonatomic, assign) rootStatus rootStatusIndex;
+@property(nonatomic, strong) NSDictionary *rootXdic;
+
+- (id)initWithRootViewController:(UIViewController *)controller;
+- (void)showMenu:(BOOL)isLeftMenu;
 @end
