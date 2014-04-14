@@ -25,7 +25,6 @@
 @synthesize rightViewFrame;
 @synthesize isMenuAnimate;
 @synthesize rootStatusIndex;
-@synthesize rootXdic;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,7 +63,6 @@
 }
 
 - (void)panGes:(UIPanGestureRecognizer *)panGes{
-    NSLog(@"isMenuAnimate-->>%d/%d",isMenuAnimate,rootStatusIndex);
     if (isMenuAnimate) {
         return;
     }
@@ -186,7 +184,6 @@
     }
 }
 - (void)resetRootOrMenView:(float)moveX{
-    NSLog(@"moveXV--->>%f/%d",moveX,rootStatusIndex);
     if (rootStatusIndex == RootOnMain) {
         if ((moveX > 0 && moveX <= 50) || (moveX < 0 && moveX >= -50)) {
             isMenuAnimate = NO;
@@ -345,37 +342,21 @@
         if (rootVC) {
             rootVC = nil;
         }
-//        rootVC = [[UIViewController alloc] init];
         rootVC = controller;
-//        rootFrame = rootVC.view.frame;
-//        rootXdic = [[NSDictionary alloc] initWithObjectsAndKeys:@"originX",[NSNumber numberWithFloat:0], nil];
-//        [rootXdic addObserver:self forKeyPath:@"originX" options:NSKeyValueObservingOptionOld context:nil];
-//        
-        
         [self.view addSubview:rootVC.view];
 
-//        UIViewController *views = (UIViewController *)rootVC.view;
-//        [rootVC.view.layer addObserver:self forKeyPath:@"frame" options:0 context:nil];
-//        [rootVC.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-//        [rootVC.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-//        [self.view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionOld context:nil];
+
+        [rootVC.view addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    NSLog(@"changeValue");
-    if([keyPath isEqualToString:@"originX"]) {
-        //change frame of View B according to View A
+    float rootViewX;
+    if([keyPath isEqualToString:@"center"]) {
+        rootViewX = rootVC.view.frame.origin.x;
     }
+    NSLog(@"rootViewX--->>%f",rootViewX);
 }
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-//    NSLog(@"changeValue");
-////    CGRect newFrame;
-////    if([object valueForKeyPath:keyPath] != [NSNull null]) {
-////        newFrame = [[object valueForKeyPath:keyPath] CGRectValue];
-////        NSLog(@"newFrame--->>%f",newFrame.size.width);
-////    }
-//}
 - (void)dealloc{
     [rootVC removeObserver:self forKeyPath:@"view.frame"];
 }
