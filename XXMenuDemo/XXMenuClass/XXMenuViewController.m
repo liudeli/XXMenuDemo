@@ -101,12 +101,6 @@
                 //缩放rootView
                 rootVC.view.transform = CGAffineTransformMakeScale(scale, scale);
                 rootVC.view.center = CGPointMake(moveX+screenWidth*scale/2, self.view.bounds.size.height/2);
-                //leftView定位
-                float leftViewX = leftViewFrame.origin.x;
-                CGRect changedLeftFrame = leftViewFrame;
-                changedLeftFrame.origin.x = leftViewX + moveX;
-                
-                leftMenuView.view.frame = changedLeftFrame;
             }else{
                 float scale = 1.0 + translation.x/2000;
                 
@@ -117,65 +111,41 @@
                 //缩放rootView
                 rootVC.view.transform = CGAffineTransformMakeScale(scale, scale);
                 rootVC.view.center = CGPointMake(320+moveX-screenWidth*scale/2, self.view.bounds.size.height/2);
-                //leftView定位
-                float rightViewX = rightViewFrame.origin.x;
-                CGRect changedRightFrame = rightViewFrame;
-                changedRightFrame.origin.x = rightViewX + moveX;
-                rightMenuView.view.frame = changedRightFrame;
             }
         }else if (rootStatusIndex == RootOnRightStatic) {
             if (moveX > 0){
                 return;
             }else{
-                float scale = 1.0 - menuViewWidth/2000 - moveX/2000;
-                if (translation.x <= -menuViewWidth) {
-                    scale = 1.0;
-                }
-                if (translation.x <= -430) {
-                    moveX = -430;
-                }
-                if (translation.x > -430 & translation.x <= -menuViewWidth) {
-                    //leftView定位
-                    float rightViewX = rightViewFrame.origin.x;
-                    CGRect changedrightFrame = rightViewFrame;
-                    changedrightFrame.origin.x = rightViewX + moveX + menuViewWidth;
-                    rightMenuView.view.frame = changedrightFrame;
+                float scale;
+                if (translation.x >= -menuViewWidth) {
+                    scale = 1.0 - menuViewWidth/2000 - moveX/2000;
+                }else if (translation.x > -(3*menuViewWidth-screenWidth) && translation.x < -menuViewWidth) {
+                    scale = 1.0 + (moveX+menuViewWidth)/2000;
+                }else if (translation.x <= -(3*menuViewWidth-screenWidth)) {
+                    moveX = -(3*menuViewWidth-screenWidth);
+                    scale = 1.0 + (moveX+menuViewWidth)/2000;
                 }
                 //缩放rootView
                 rootVC.view.transform = CGAffineTransformMakeScale(scale, scale);
                 rootVC.view.center = CGPointMake(menuViewWidth + moveX + screenWidth*scale/2, self.view.bounds.size.height/2);
-                //leftView定位
-                float leftViewX = leftViewFrame.origin.x;
-                CGRect changedLeftFrame = leftViewFrame;
-                changedLeftFrame.origin.x = leftViewX + moveX;
-                leftMenuView.view.frame = changedLeftFrame;
             }
         }else if (rootStatusIndex == RootOnLeftStatic){
             if (moveX < 0){
                 return;
             }else{
-                float scale = 1.0 - menuViewWidth/2000 + moveX/2000;
-                if (translation.x >= menuViewWidth) {
-                    scale = 1.0;
+                float scale;
+                if (translation.x <= menuViewWidth) {
+                    scale = 1.0 - menuViewWidth/2000 + moveX/2000;
+                }else if (translation.x < 3*menuViewWidth-screenWidth && translation.x > menuViewWidth) {
+                    scale = 1.0 - (moveX-menuViewWidth)/2000;
+                }else if (translation.x >= 3*menuViewWidth-screenWidth) {
+                    moveX = 3*menuViewWidth-screenWidth;
+                    scale = 1.0 - (moveX-menuViewWidth)/2000;
                 }
-                if (translation.x >= 430) {
-                    moveX = 430;
-                }
-                if (translation.x < 430 & translation.x >= menuViewWidth) {
-                    //leftView定位
-                    float leftViewX = leftViewFrame.origin.x;
-                    CGRect changedLeftFrame = leftViewFrame;
-                    changedLeftFrame.origin.x = leftViewX + moveX - menuViewWidth;
-                    leftMenuView.view.frame = changedLeftFrame;
-                }
+                
                 //缩放rootView
                 rootVC.view.transform = CGAffineTransformMakeScale(scale, scale);
                 rootVC.view.center = CGPointMake(screenWidth-menuViewWidth-screenWidth*scale/2+moveX, self.view.bounds.size.height/2);
-                //leftView定位
-                float rightViewX = rightViewFrame.origin.x;
-                CGRect changedRightFrame = rightViewFrame;
-                changedRightFrame.origin.x = rightViewX + moveX;
-                rightMenuView.view.frame = changedRightFrame;
             }
         }
     }else if (panGes.state == UIGestureRecognizerStateCancelled || panGes.state == UIGestureRecognizerStateEnded || panGes.state == UIGestureRecognizerStateFailed || panGes.state == UIGestureRecognizerStatePossible){
@@ -246,7 +216,7 @@
             return;
         }
         isMenuAnimate = YES;
-        [UIView animateWithDuration:.5 animations:^{
+        [UIView animateWithDuration:.3 animations:^{
             CGRect frame = leftMenuView.view.frame;
             frame.origin.x = 0;
             leftMenuView.view.frame = frame;
@@ -265,7 +235,7 @@
             return;
         }
         isMenuAnimate = YES;
-        [UIView animateWithDuration:.5 animations:^{
+        [UIView animateWithDuration:.3 animations:^{
             CGRect frame = rightMenuView.view.frame;
             frame.origin.x = screenWidth - menuViewWidth;
             rightMenuView.view.frame = frame;
@@ -285,20 +255,20 @@
         return;
     }
     isMenuAnimate = YES;
-    [UIView animateWithDuration:.5 animations:^{
+    [UIView animateWithDuration:.3 animations:^{
         //leftViewMenu or rightViewMenu重置
         if (rootVC.view.frame.origin.x < 0) {
             CGRect frame = rightMenuView.view.frame;
             frame.origin.x = screenWidth;
             rightMenuView.view.frame = frame;
         }else{
-            CGRect frame = rightMenuView.view.frame;
+            CGRect frame = leftMenuView.view.frame;
             frame.origin.x = -menuViewWidth;
             leftMenuView.view.frame = frame;
         }
         
         //rootView重置
-        //            CGPoint rootPoint = rootVC.view.center;
+        //CGPoint rootPoint = rootVC.view.center;
         rootVC.view.center = self.view.center;
         rootVC.view.transform = CGAffineTransformMakeScale(1, 1);
     } completion:^(BOOL finished) {
@@ -351,30 +321,33 @@
     return self;
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSLog(@"change");
+    if (isMenuAnimate) {
+        return;
+    }
     float rootViewX;
+    float rootViewWidth;
     if([keyPath isEqualToString:@"center"]) {
         rootViewX = rootVC.view.frame.origin.x;
+        rootViewWidth = rootVC.view.frame.size.width;
     }
-    NSLog(@"rootViewX--->>%f",rootViewX);
+    //leftView定位
+    CGRect changedLeftFrame = leftViewFrame;
+    changedLeftFrame.origin.x = rootViewX - menuViewWidth;
+    leftMenuView.view.frame = changedLeftFrame;
+
+    //rightView定位
+    CGRect changedRightFrame = rightViewFrame;
+    changedRightFrame.origin.x = rootViewX + rootViewWidth;
+    rightMenuView.view.frame = changedRightFrame;
 }
 - (void)dealloc{
-    [rootVC removeObserver:self forKeyPath:@"view.frame"];
+    [rootVC.view removeObserver:self forKeyPath:@"center"];
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
