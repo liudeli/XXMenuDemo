@@ -48,24 +48,19 @@
     bgImgView.image = [UIImage imageNamed:@"bgImg.png"];
     bgImgView.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:bgImgView];
-    
-    UIPanGestureRecognizer *panGus = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGes:)];
-    panGus.delegate = self;
-    panGus.delaysTouchesBegan = YES;
-    panGus.cancelsTouchesInView = NO;    
-    [self.view addGestureRecognizer:panGus];
-    
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGus:)];
-    tapGes.delegate = self;
-    tapGes.numberOfTouchesRequired = 1;
-    tapGes.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tapGes];
 }
 
 - (void)panGes:(UIPanGestureRecognizer *)panGes{
+    NSLog(@"panGes");
     if (isMenuAnimate) {
         return;
     }
+//    CGPoint panGesPoint = [panGes locationInView:self.view];
+//    CGRect rect = [self.view convertRect:rootVC.view.frame toView:self.view];
+//    
+//    if (!CGRectContainsPoint(rect, panGesPoint)) {
+//        return;
+//    }
     CGPoint translation = [panGes translationInView:self.view];//x、y移动值
 //    CGPoint velocity = [panGes velocityInView:self.view];//x、y移动速度
 //    CGPoint pointer = [panGes locationInView:self.view];//x、y当前值
@@ -74,13 +69,7 @@
         rootViewFrame = rootVC.view.frame;
         leftViewFrame = leftMenuView.view.frame;
         rightViewFrame = rightMenuView.view.frame;
-        CGPoint panGesPoint = [panGes locationInView:self.view];
-        CGRect rect = [self.view convertRect:rootVC.view.frame toView:self.view];
-        
-        if (!CGRectContainsPoint(rect, panGesPoint)) {
-            return;
-        }
-        
+
         if (rootVC.view.frame.origin.x == 0) {
             rootStatusIndex = RootOnMain;
         }else if (rootVC.view.frame.origin.x == menuViewWidth){
@@ -277,20 +266,22 @@
         NSLog(@"reset OK!");
     }];
 }
+#pragma mark - UIGestureDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    return YES;
+}
 
 - (void)tapGus:(UIPanGestureRecognizer *)tapGes{
-    NSLog(@"tapGus");
-    CGPoint tapGesPoint = [tapGes locationInView:self.view];
-    CGRect rect = [self.view convertRect:rootVC.view.frame toView:self.view];
-
-    if (!CGRectContainsPoint(rect,tapGesPoint)) {
-        return;
-    }
-    if (rootStatusIndex == RootOnMain) {
-        return;
-    }
+    NSLog(@"tapGes-");
     isMenuAnimate = NO;
     [self resetRootViewAndMenuView];
+//    CGPoint tapGesPoint = [tapGes locationInView:self.view];
+//    CGRect rootViewRect = [self.view convertRect:rootVC.view.frame toView:self.view];
+//    if (CGRectContainsPoint(rootViewRect,tapGesPoint) && rootStatusIndex != RootOnMain) {
+//        isMenuAnimate = NO;
+//        [self resetRootViewAndMenuView];
+//    }else{  
+//    }
 }
 - (void)initFrame{
     CGRect leftViewframe = self.view.bounds;
@@ -305,7 +296,6 @@
 //    [self.view insertSubview:rightMenuView.view aboveSubview:rootVC.view];
     [self.view addSubview:leftMenuView.view];
     [self.view addSubview:rightMenuView.view];
-
 }
 - (id)initWithRootViewController:(UIViewController *)controller{
     if ([super init]) {
@@ -315,13 +305,23 @@
         rootVC = controller;
         [self.view addSubview:rootVC.view];
 
-
+        UIPanGestureRecognizer *panGus = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGes:)];
+        panGus.delegate = self;
+        panGus.delaysTouchesBegan = YES;
+        panGus.cancelsTouchesInView = NO;
+        [rootVC.view addGestureRecognizer:panGus];
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGus:)];
+        tapGes.delegate = self;
+        tapGes.numberOfTouchesRequired = 1;
+        tapGes.numberOfTapsRequired = 1;
+        [rootVC.view addGestureRecognizer:tapGes];
+        
         [rootVC.view addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
 }
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    NSLog(@"change");
     if (isMenuAnimate) {
         return;
     }
