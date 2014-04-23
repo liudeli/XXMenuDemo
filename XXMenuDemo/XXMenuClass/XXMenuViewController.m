@@ -280,7 +280,7 @@
 //    if (CGRectContainsPoint(rootViewRect,tapGesPoint) && rootStatusIndex != RootOnMain) {
 //        isMenuAnimate = NO;
 //        [self resetRootViewAndMenuView];
-//    }else{  
+//    }else{
 //    }
 }
 - (void)initFrame{
