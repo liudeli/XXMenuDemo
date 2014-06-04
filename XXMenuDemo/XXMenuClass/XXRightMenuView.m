@@ -17,7 +17,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        self.frame = CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue);
     }
     return self;
 }

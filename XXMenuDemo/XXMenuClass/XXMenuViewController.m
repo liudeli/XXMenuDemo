@@ -38,7 +38,6 @@
 {
     [super viewDidLoad];
 
-//    self.view.backgroundColor = [UIColor clearColor];
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     bgImgView.image = [UIImage imageNamed:@"bgImg.png"];
     bgImgView.contentMode = UIViewContentModeScaleToFill;
@@ -111,6 +110,7 @@
                     moveX = -(3*menuViewWidth-screenWidth);
                     scale = 1.0 + (moveX+menuViewWidth)/2000;
                 }
+                
                 //缩放rootView
                 rootVC.view.transform = CGAffineTransformMakeScale(scale, scale);
                 rootVC.view.center = CGPointMake(menuViewWidth + moveX + screenWidth*scale/2, self.view.bounds.size.height/2);
@@ -318,11 +318,11 @@
 //    }
 }
 - (void)initFrame{
-    CGRect leftViewframe = leftMenuView.bounds;
-    leftViewframe.origin.x = 0;
+    CGRect leftViewframe = leftMenuView.frame;
+    leftViewframe.origin.x = -menuViewWidth;
     leftMenuView.frame = leftViewframe;
     
-    CGRect rightViewframe = rightMenuView.bounds;
+    CGRect rightViewframe = rightMenuView.frame;
     rightViewframe.origin.x = screenWidth;
     rightMenuView.frame = rightViewframe;
 

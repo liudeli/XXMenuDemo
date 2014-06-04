@@ -17,16 +17,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-//        DLog(@"------>>%@",frame);
-//        self.frame = frame;
-        
-//        [self initUI];
+
         self.backgroundColor = [UIColor blackColor];
     }
     return self;
 }
 - (void)layoutSubviews{
-    UITableView *tableList = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, menuViewWidth, screenHeight*scaleValue) style:UITableViewStylePlain];
+    UITableView *tableList = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     tableList.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
     tableList.delegate = self;
     tableList.dataSource = self;
