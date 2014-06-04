@@ -8,11 +8,6 @@
 
 #import "XXMenuViewController.h"
 
-
-#define scaleValue 0.875
-#define menuViewWidth 250.0
-#define screenWidth self.view.bounds.size.width
-
 @interface XXMenuViewController ()
 @end
 
@@ -31,11 +26,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        leftMenuView = [[XXLeftMenuViewController alloc] init];
-        rightMenuView = [[XXRightMenuViewController alloc] init];
+        leftMenuView = [[XXLeftMenuView alloc] initWithFrame:CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue)];
+        rightMenuView = [[XXRightMenuView alloc] initWithFrame:CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue)];
         isMenuAnimate = NO;
         rootStatusIndex = RootOnMain;
-        [self initFrame];
     }
     return self;
 }
@@ -43,11 +37,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+//    self.view.backgroundColor = [UIColor clearColor];
     UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     bgImgView.image = [UIImage imageNamed:@"bgImg.png"];
     bgImgView.contentMode = UIViewContentModeScaleToFill;
     [self.view addSubview:bgImgView];
+    
+    
+    [self initFrame];
 }
 
 - (void)panGes:(UIPanGestureRecognizer *)panGes{
@@ -66,8 +64,8 @@
 
     if (panGes.state == UIGestureRecognizerStateBegan) {
         rootViewFrame = rootVC.view.frame;
-        leftViewFrame = leftMenuView.view.frame;
-        rightViewFrame = rightMenuView.view.frame;
+        leftViewFrame = leftMenuView.frame;
+        rightViewFrame = rightMenuView.frame;
 
         if (rootVC.view.frame.origin.x == 0) {
             rootStatusIndex = RootOnMain;
@@ -235,16 +233,16 @@
         return;
     }
     if (isLeftMenu) {
-        if (leftMenuView.view.frame.origin.x == 0) {
+        if (leftMenuView.frame.origin.x == 0) {
             isMenuAnimate = NO;
             [self resetRootViewAndMenuView];
             return;
         }
         isMenuAnimate = YES;
         [UIView animateWithDuration:.3 animations:^{
-            CGRect frame = leftMenuView.view.frame;
+            CGRect frame = leftMenuView.frame;
             frame.origin.x = 0;
-            leftMenuView.view.frame = frame;
+            leftMenuView.frame = frame;
             
             //rootView缩小
             rootVC.view.transform = CGAffineTransformMakeScale(scaleValue, scaleValue);
@@ -254,16 +252,16 @@
             rootStatusIndex = RootOnRightStatic;
         }];
     }else{
-        if (rightMenuView.view.frame.origin.x == screenWidth - menuViewWidth) {
+        if (rightMenuView.frame.origin.x == screenWidth - menuViewWidth) {
             isMenuAnimate = NO;
             [self resetRootViewAndMenuView];
             return;
         }
         isMenuAnimate = YES;
         [UIView animateWithDuration:.3 animations:^{
-            CGRect frame = rightMenuView.view.frame;
+            CGRect frame = rightMenuView.frame;
             frame.origin.x = screenWidth - menuViewWidth;
-            rightMenuView.view.frame = frame;
+            rightMenuView.frame = frame;
             
             //rootView缩小
             rootVC.view.transform = CGAffineTransformMakeScale(scaleValue, scaleValue);
@@ -283,13 +281,13 @@
     [UIView animateWithDuration:.3 animations:^{
         //leftViewMenu or rightViewMenu重置
         if (rootVC.view.frame.origin.x < 0) {
-            CGRect frame = rightMenuView.view.frame;
+            CGRect frame = rightMenuView.frame;
             frame.origin.x = screenWidth;
-            rightMenuView.view.frame = frame;
+            rightMenuView.frame = frame;
         }else{
-            CGRect frame = leftMenuView.view.frame;
+            CGRect frame = leftMenuView.frame;
             frame.origin.x = -menuViewWidth;
-            leftMenuView.view.frame = frame;
+            leftMenuView.frame = frame;
         }
         
         //rootView重置
@@ -320,18 +318,16 @@
 //    }
 }
 - (void)initFrame{
-    CGRect leftViewframe = self.view.bounds;
-    leftViewframe.origin.x = -menuViewWidth;
-    leftMenuView.view.frame = leftViewframe;
+    CGRect leftViewframe = leftMenuView.bounds;
+    leftViewframe.origin.x = 0;
+    leftMenuView.frame = leftViewframe;
     
-    CGRect rightViewframe = self.view.bounds;
+    CGRect rightViewframe = rightMenuView.bounds;
     rightViewframe.origin.x = screenWidth;
-    rightMenuView.view.frame = rightViewframe;
-    
-//    [self.view insertSubview:leftMenuView.view aboveSubview:rootVC.view];
-//    [self.view insertSubview:rightMenuView.view aboveSubview:rootVC.view];
-    [self.view addSubview:leftMenuView.view];
-    [self.view addSubview:rightMenuView.view];
+    rightMenuView.frame = rightViewframe;
+
+    [self.view addSubview:leftMenuView];
+    [self.view addSubview:rightMenuView];
 }
 - (id)initWithRootVC:(UIViewController *)controller{
     if ([super init]) {
@@ -371,12 +367,12 @@
     //leftView定位
     CGRect changedLeftFrame = leftViewFrame;
     changedLeftFrame.origin.x = rootViewX - menuViewWidth;
-    leftMenuView.view.frame = changedLeftFrame;
+    leftMenuView.frame = changedLeftFrame;
 
     //rightView定位
     CGRect changedRightFrame = rightViewFrame;
     changedRightFrame.origin.x = rootViewX + rootViewWidth;
-    rightMenuView.view.frame = changedRightFrame;
+    rightMenuView.frame = changedRightFrame;
 }
 - (void)dealloc{
     [rootVC.view removeObserver:self forKeyPath:@"center"];

@@ -1,44 +1,32 @@
 //
-//  XXRightMenuViewController.m
+//  XXRightMenuView.m
 //  XXMenuDemo
 //
-//  Created by shan xu on 14-4-11.
-//  Copyright (c) 2014年 夏至. All rights reserved.
+//  Created by xiazer on 14-6-4.
+//  Copyright (c) 2014年 xiazer. All rights reserved.
 //
 
-#import "XXRightMenuViewController.h"
-#import "XXAppDelegate.h"
+#import "XXRightMenuView.h"
 #import "XXDetailViewController.h"
+#import "XXAppDelegate.h"
 
-#define scaleValue 0.875
-#define menuViewWidth 250.0
+@implementation XXRightMenuView
 
-@interface XXRightMenuViewController ()
-
-@end
-
-@implementation XXRightMenuViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithFrame:frame];
     if (self) {
-        // Custom initialization
+        // Initialization code
+//        self.frame = CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue);
     }
     return self;
 }
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor clearColor];
-    
-    UITableView *tableList = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height*(1-scaleValue)/2, menuViewWidth, self.view.bounds.size.height*scaleValue) style:UITableViewStylePlain];
+- (void)layoutSubviews{
+    UITableView *tableList = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     tableList.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
     tableList.delegate = self;
     tableList.dataSource = self;
-    [self.view addSubview:tableList];
+    [self addSubview:tableList];
 }
 #pragma mark tableViewDelegate;
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -70,20 +58,13 @@
     [[XXAppDelegate sharedAppDelegate].XXMenuVC replaceRootVC:nav isFromLeft:NO];
     [[XXAppDelegate sharedAppDelegate].XXMenuVC showMenu:NO];
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    // Drawing code
 }
 */
 

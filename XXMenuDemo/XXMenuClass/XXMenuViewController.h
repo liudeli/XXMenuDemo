@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XXLeftMenuViewController.h"
-#import "XXRightMenuViewController.h"
+#import "XXLeftMenuView.h"
+#import "XXRightMenuView.h"
 
 typedef enum : NSUInteger {
     RootOnEles = 0,
@@ -19,8 +19,8 @@ typedef enum : NSUInteger {
 
 @interface XXMenuViewController : UIViewController<UIGestureRecognizerDelegate>
 
-@property(nonatomic, strong) XXLeftMenuViewController *leftMenuView;
-@property(nonatomic, strong) XXRightMenuViewController *rightMenuView;
+@property(nonatomic, strong) XXLeftMenuView *leftMenuView;
+@property(nonatomic, strong) XXRightMenuView *rightMenuView;
 @property(nonatomic, strong) UIViewController *rootVC;
 @property(nonatomic, assign) CGRect rootViewFrame;
 @property(nonatomic, assign) CGRect leftViewFrame;
