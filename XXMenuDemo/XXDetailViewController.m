@@ -43,7 +43,7 @@
 
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(0, 350, 320, 45);
-    btn.backgroundColor = [UIColor redColor];
+    btn.backgroundColor = [UIColor grayColor];
     [btn setTitle:@"Go Next" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(goNext:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];

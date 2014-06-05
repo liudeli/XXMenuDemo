@@ -50,13 +50,15 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     XXDetailViewController *detailVC = [[XXDetailViewController alloc] init];
-    detailVC.titStr = [NSString stringWithFormat:@"我来自Page--%d",indexPath.row];
+    detailVC.titStr = [NSString stringWithFormat:@"我来自Page-- %d",indexPath.row];
     detailVC.indexNum = indexPath.row;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:detailVC];
     [[XXAppDelegate sharedAppDelegate].XXMenuVC replaceRootVC:nav isFromLeft:YES];
     [[XXAppDelegate sharedAppDelegate].XXMenuVC showMenu:YES];
 }
+
+//- (void)
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -20,6 +20,7 @@
 @synthesize rightViewFrame;
 @synthesize isMenuAnimate;
 @synthesize rootStatusIndex;
+@synthesize obArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +31,7 @@
         rightMenuView = [[XXRightMenuView alloc] initWithFrame:CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue)];
         isMenuAnimate = NO;
         rootStatusIndex = RootOnMain;
+        obArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -308,8 +310,8 @@
     
     UINavigationController *nav = (UINavigationController *)rootVC;
 
-    DLog(@"count--->>%d",nav.viewControllers.count);
-    if (nav.viewControllers.count > 1) {
+    int i = nav.viewControllers.count;
+    if (i > 1) {
         return NO;
     }
     return YES;
@@ -335,6 +337,12 @@
 }
 - (id)initWithRootVC:(UIViewController *)controller{
     if ([super init]) {
+        
+        if(![obArray containsObject:controller])
+        {
+            [obArray addObject:controller];
+        }
+        
         if (rootVC) {
             [rootVC.view removeFromSuperview];
             rootVC = nil;

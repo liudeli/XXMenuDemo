@@ -27,6 +27,7 @@ typedef enum : NSUInteger {
 @property(nonatomic, assign) CGRect rightViewFrame;
 @property(nonatomic, assign) BOOL isMenuAnimate;//菜单正在移动
 @property(nonatomic, assign) rootStatus rootStatusIndex;
+@property(nonatomic, strong) NSMutableArray *obArray;
 
 - (id)initWithRootVC:(UIViewController *)controller;
 - (void)showMenu:(BOOL)isLeftMenu;
