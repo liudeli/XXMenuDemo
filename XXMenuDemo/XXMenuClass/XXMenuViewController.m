@@ -302,23 +302,24 @@
 }
 #pragma mark - UIGestureDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    if (rootStatusIndex == RootOnMain) {
+    if (rootStatusIndex == RootOnMain && [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+        return NO;
+    }
+    
+    UINavigationController *nav = (UINavigationController *)rootVC;
+
+    DLog(@"count--->>%d",nav.viewControllers.count);
+    if (nav.viewControllers.count > 1) {
         return NO;
     }
     return YES;
 }
 
-- (void)tapGus:(UIPanGestureRecognizer *)tapGes{
+- (void)tapGus:(UITapGestureRecognizer *)tapGes{
+
     NSLog(@"tapGes-");
     isMenuAnimate = NO;
     [self resetRootViewAndMenuView];
-//    CGPoint tapGesPoint = [tapGes locationInView:self.view];
-//    CGRect rootViewRect = [self.view convertRect:rootVC.view.frame toView:self.view];
-//    if (CGRectContainsPoint(rootViewRect,tapGesPoint) && rootStatusIndex != RootOnMain) {
-//        isMenuAnimate = NO;
-//        [self resetRootViewAndMenuView];
-//    }else{
-//    }
 }
 - (void)initFrame{
     CGRect leftViewframe = leftMenuView.frame;
