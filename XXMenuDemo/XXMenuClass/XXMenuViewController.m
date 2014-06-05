@@ -302,6 +302,9 @@
 }
 #pragma mark - UIGestureDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    if (rootStatusIndex == RootOnMain) {
+        return NO;
+    }
     return YES;
 }
 
