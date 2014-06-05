@@ -7,6 +7,7 @@
 //
 
 #import "XXDetailViewController.h"
+#import "XXNextViewController.h"
 
 @interface XXDetailViewController ()
 
@@ -39,8 +40,19 @@
     lab.backgroundColor = [UIColor redColor];
     lab.font = [UIFont systemFontOfSize:160];
     [self.view addSubview:lab];
+
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 350, 320, 45);
+    btn.backgroundColor = [UIColor redColor];
+    [btn setTitle:@"Go Next" forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(goNext:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
 }
 
+- (void)goNext:(id)sender{
+    XXNextViewController *next = [[XXNextViewController alloc] init];
+    [self.navigationController pushViewController:next animated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

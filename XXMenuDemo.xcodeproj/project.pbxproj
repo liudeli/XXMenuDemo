@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		27389B5B938B4909A359D94C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8193662C627941C8A2794729 /* libPods.a */; };
+		F8BC888E1940450D002B86AA /* XXNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BC888D1940450D002B86AA /* XXNextViewController.m */; };
 		F8BDE32B193EA8C3002168EE /* XXLeftMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BDE32A193EA8C3002168EE /* XXLeftMenuView.m */; };
 		F8BDE32E193EA8D6002168EE /* XXRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BDE32D193EA8D6002168EE /* XXRightMenuView.m */; };
 		F8CC0C3419188B9800986324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8CC0C3319188B9800986324 /* Foundation.framework */; };
@@ -46,6 +47,8 @@
 /* Begin PBXFileReference section */
 		8193662C627941C8A2794729 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E2C0B0BAC4E423A86AA767D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F8BC888C1940450D002B86AA /* XXNextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXNextViewController.h; sourceTree = "<group>"; };
+		F8BC888D1940450D002B86AA /* XXNextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXNextViewController.m; sourceTree = "<group>"; };
 		F8BDE329193EA8C3002168EE /* XXLeftMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLeftMenuView.h; sourceTree = "<group>"; };
 		F8BDE32A193EA8C3002168EE /* XXLeftMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLeftMenuView.m; sourceTree = "<group>"; };
 		F8BDE32C193EA8D6002168EE /* XXRightMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXRightMenuView.h; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 				F8CC0C6919188BED00986324 /* showPages */,
 				F8CC0C6C19188BED00986324 /* XXDetailViewController.h */,
 				F8CC0C6D19188BED00986324 /* XXDetailViewController.m */,
+				F8BC888C1940450D002B86AA /* XXNextViewController.h */,
+				F8BC888D1940450D002B86AA /* XXNextViewController.m */,
 				F8CC0C4219188B9800986324 /* XXAppDelegate.h */,
 				F8CC0C4319188B9800986324 /* XXAppDelegate.m */,
 				F8CC0C4519188B9800986324 /* Images.xcassets */,
@@ -361,6 +366,7 @@
 				F8BDE32E193EA8D6002168EE /* XXRightMenuView.m in Sources */,
 				F8BDE32B193EA8C3002168EE /* XXLeftMenuView.m in Sources */,
 				F8CC0C7E19188C1600986324 /* XXMenuViewController.m in Sources */,
+				F8BC888E1940450D002B86AA /* XXNextViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
