@@ -11,6 +11,10 @@
 		F8BC888E1940450D002B86AA /* XXNextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BC888D1940450D002B86AA /* XXNextViewController.m */; };
 		F8BDE32B193EA8C3002168EE /* XXLeftMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BDE32A193EA8C3002168EE /* XXLeftMenuView.m */; };
 		F8BDE32E193EA8D6002168EE /* XXRightMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = F8BDE32D193EA8D6002168EE /* XXRightMenuView.m */; };
+		F8C3B4C21945EB7800D2D0E6 /* leftside_shadow_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C3B4BC1945EB7800D2D0E6 /* leftside_shadow_bg.png */; };
+		F8C3B4C31945EB7800D2D0E6 /* leftside_shadow_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C3B4BD1945EB7800D2D0E6 /* leftside_shadow_bg@2x.png */; };
+		F8C3B4C41945EB7800D2D0E6 /* pushBackLock.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C3B4BF1945EB7800D2D0E6 /* pushBackLock.m */; };
+		F8C3B4C51945EB7800D2D0E6 /* PushBackNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8C3B4C11945EB7800D2D0E6 /* PushBackNavigationController.m */; };
 		F8CC0C3419188B9800986324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8CC0C3319188B9800986324 /* Foundation.framework */; };
 		F8CC0C3619188B9800986324 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8CC0C3519188B9800986324 /* CoreGraphics.framework */; };
 		F8CC0C3819188B9800986324 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8CC0C3719188B9800986324 /* UIKit.framework */; };
@@ -53,6 +57,12 @@
 		F8BDE32A193EA8C3002168EE /* XXLeftMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLeftMenuView.m; sourceTree = "<group>"; };
 		F8BDE32C193EA8D6002168EE /* XXRightMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXRightMenuView.h; sourceTree = "<group>"; };
 		F8BDE32D193EA8D6002168EE /* XXRightMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXRightMenuView.m; sourceTree = "<group>"; };
+		F8C3B4BC1945EB7800D2D0E6 /* leftside_shadow_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftside_shadow_bg.png; sourceTree = "<group>"; };
+		F8C3B4BD1945EB7800D2D0E6 /* leftside_shadow_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftside_shadow_bg@2x.png"; sourceTree = "<group>"; };
+		F8C3B4BE1945EB7800D2D0E6 /* pushBackLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pushBackLock.h; sourceTree = "<group>"; };
+		F8C3B4BF1945EB7800D2D0E6 /* pushBackLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = pushBackLock.m; sourceTree = "<group>"; };
+		F8C3B4C01945EB7800D2D0E6 /* PushBackNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushBackNavigationController.h; sourceTree = "<group>"; };
+		F8C3B4C11945EB7800D2D0E6 /* PushBackNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushBackNavigationController.m; sourceTree = "<group>"; };
 		F8CC0C3019188B9800986324 /* XXMenuDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XXMenuDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8CC0C3319188B9800986324 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F8CC0C3519188B9800986324 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,9 +118,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F8C3B4BB1945EB7800D2D0E6 /* pushBack */ = {
+			isa = PBXGroup;
+			children = (
+				F8C3B4BC1945EB7800D2D0E6 /* leftside_shadow_bg.png */,
+				F8C3B4BD1945EB7800D2D0E6 /* leftside_shadow_bg@2x.png */,
+				F8C3B4BE1945EB7800D2D0E6 /* pushBackLock.h */,
+				F8C3B4BF1945EB7800D2D0E6 /* pushBackLock.m */,
+				F8C3B4C01945EB7800D2D0E6 /* PushBackNavigationController.h */,
+				F8C3B4C11945EB7800D2D0E6 /* PushBackNavigationController.m */,
+			);
+			path = pushBack;
+			sourceTree = SOURCE_ROOT;
+		};
 		F8CC0C2719188B9800986324 = {
 			isa = PBXGroup;
 			children = (
+				F8C3B4BB1945EB7800D2D0E6 /* pushBack */,
 				F8CC0C3919188B9800986324 /* XXMenuDemo */,
 				F8CC0C5219188B9800986324 /* XXMenuDemoTests */,
 				F8CC0C3219188B9800986324 /* Frameworks */,
@@ -307,7 +331,9 @@
 				F8CC0C7219188BED00986324 /* nav_menu.png in Resources */,
 				F8CC0C7319188BED00986324 /* nav_menu@2x.png in Resources */,
 				F8CC0C6F19188BED00986324 /* bgImg@2x.png in Resources */,
+				F8C3B4C21945EB7800D2D0E6 /* leftside_shadow_bg.png in Resources */,
 				F8CC0C7119188BED00986324 /* Default-568h@2x.png in Resources */,
+				F8C3B4C31945EB7800D2D0E6 /* leftside_shadow_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +390,8 @@
 				F8CC0C4419188B9800986324 /* XXAppDelegate.m in Sources */,
 				F8CC0C4019188B9800986324 /* main.m in Sources */,
 				F8BDE32E193EA8D6002168EE /* XXRightMenuView.m in Sources */,
+				F8C3B4C41945EB7800D2D0E6 /* pushBackLock.m in Sources */,
+				F8C3B4C51945EB7800D2D0E6 /* PushBackNavigationController.m in Sources */,
 				F8BDE32B193EA8C3002168EE /* XXLeftMenuView.m in Sources */,
 				F8CC0C7E19188C1600986324 /* XXMenuViewController.m in Sources */,
 				F8BC888E1940450D002B86AA /* XXNextViewController.m in Sources */,

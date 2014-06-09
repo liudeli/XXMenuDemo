@@ -35,7 +35,7 @@
     self.title = [NSString stringWithFormat:@"我来自%d",indexNum];
 
     self.view.layer.shadowColor = [[UIColor blackColor]CGColor];
-    self.view.layer.shadowOffset = CGSizeMake(5, 5);
+//    self.view.layer.shadowOffset = CGSizeMake(5, 5);
     self.view.layer.shadowRadius = 5;
     self.view.layer.shadowOpacity = 1;
     

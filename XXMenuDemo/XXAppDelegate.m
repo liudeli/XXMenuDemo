@@ -8,6 +8,7 @@
 
 #import "XXAppDelegate.h"
 #import "XXMainViewController.h"
+#import "PushBackNavigationController.h"
 
 @implementation XXAppDelegate
 @synthesize XXMenuVC;
@@ -24,7 +25,9 @@
     [self.window makeKeyAndVisible];
     
     XXMainViewController *mainVC = [[XXMainViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
+    PushBackNavigationController *nav = [[PushBackNavigationController alloc] initWithRootViewController:mainVC];
+    
     XXMenuVC = [[XXMenuViewController alloc] initWithRootVC:nav];
     
     self.window.rootViewController = XXMenuVC;
