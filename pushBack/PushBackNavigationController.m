@@ -89,6 +89,10 @@
     if ([capImageArr count] >= 1) {
         [capImageArr removeLastObject];
     }
+    if (backGroundView) {
+        [backGroundView removeFromSuperview];
+        backGroundView = nil;
+    }
     return [super popViewControllerAnimated:animated];
 }
 #pragma mark -popToRootView
@@ -193,6 +197,7 @@
         [UIView animateWithDuration:0.3 animations:^{
             [self moveToX:0];
         } completion:^(BOOL finished) {
+            
         }];
         return;
     }

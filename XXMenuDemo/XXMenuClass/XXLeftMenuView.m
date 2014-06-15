@@ -9,6 +9,7 @@
 #import "XXLeftMenuView.h"
 #import "XXDetailViewController.h"
 #import "XXAppDelegate.h"
+#import "PushBackNavigationController.h"
 
 @implementation XXLeftMenuView
 
@@ -53,7 +54,9 @@
     detailVC.titStr = [NSString stringWithFormat:@"我来自Page-- %d",indexPath.row];
     detailVC.indexNum = indexPath.row;
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:detailVC];
+
+    PushBackNavigationController *nav = [[PushBackNavigationController alloc] initWithRootViewController:detailVC];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:detailVC];
     [[XXAppDelegate sharedAppDelegate].XXMenuVC replaceRootVC:nav isFromLeft:YES];
     [[XXAppDelegate sharedAppDelegate].XXMenuVC showMenu:YES];
 }
