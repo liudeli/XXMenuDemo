@@ -14,6 +14,7 @@
 @implementation XXMenuViewController
 @synthesize leftMenuView;
 @synthesize rightMenuView;
+//@synthesize coverView;
 @synthesize rootVC;
 @synthesize rootViewFrame;
 @synthesize leftViewFrame;
@@ -55,6 +56,32 @@
     [self initFrame];
 }
 
+- (UIView *)coverView{
+    if (_coverView == nil) {
+        _coverView = [[UIView alloc] init];
+        _coverView.backgroundColor = [UIColor clearColor];
+        
+        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGus:)];
+        tapGes.delegate                = self;
+        tapGes.numberOfTouchesRequired = 1;
+        tapGes.numberOfTapsRequired    = 1;
+        [_coverView addGestureRecognizer:tapGes];
+
+    }
+    return _coverView;
+}
+
+- (void)hideCoverView{
+    if (_coverView == nil) {
+        return;
+    }
+    [_coverView removeFromSuperview];
+}
+- (void)addCoverView{
+    self.coverView.frame = rootVC.view.frame;
+    [self.view insertSubview:self.coverView aboveSubview:rootVC.view];
+}
+
 - (void)panGes:(UIPanGestureRecognizer *)panGes{
     if (isMenuAnimate) {
         return;
@@ -76,10 +103,13 @@
 
         if (rootVC.view.frame.origin.x == 0) {
             rootStatusIndex = RootOnMain;
+            [self hideCoverView];
         }else if (rootVC.view.frame.origin.x == menuViewWidth){
             rootStatusIndex = RootOnRightStatic;
+            [self addCoverView];
         }else if (rootVC.view.frame.origin.x == screenWidth-menuViewWidth-screenWidth*scaleValue){
             rootStatusIndex = RootOnLeftStatic;
+            [self addCoverView];
         }
     }else if (panGes.state == UIGestureRecognizerStateChanged){
         float moveX = translation.x;
@@ -159,6 +189,7 @@
         }
         if (moveX == menuViewWidth) {
             rootStatusIndex = RootOnRightStatic;
+            [self addCoverView];
         }
         if (moveX < 0 && moveX >= -menuViewWidth) {
             [self showMenu:NO];
@@ -172,6 +203,7 @@
         }
         if (moveX == -menuViewWidth) {
             rootStatusIndex = RootOnLeftStatic;
+            [self addCoverView];
         }
         if (moveX < -50 && moveX > -menuViewWidth-50) {
             isMenuAnimate = NO;
@@ -189,6 +221,7 @@
         }
         if (moveX == menuViewWidth) {
             rootStatusIndex = RootOnRightStatic;
+            [self addCoverView];
         }
         if (moveX > 50 && moveX < menuViewWidth+50) {
             isMenuAnimate = NO;
@@ -234,12 +267,6 @@
     panGus.cancelsTouchesInView = NO;
     [rootVC.view addGestureRecognizer:panGus];
     
-    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGus:)];
-    tapGes.delegate = self;
-    tapGes.numberOfTouchesRequired = 1;
-    tapGes.numberOfTapsRequired = 1;
-    [rootVC.view addGestureRecognizer:tapGes];
-    
     [rootVC.view addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
 }
 
@@ -265,6 +292,7 @@
         } completion:^(BOOL finished) {
             isMenuAnimate = NO;
             rootStatusIndex = RootOnRightStatic;
+            [self addCoverView];
         }];
     }else{
         if (rightMenuView.frame.origin.x == screenWidth - menuViewWidth) {
@@ -284,6 +312,7 @@
         } completion:^(BOOL finished) {
             isMenuAnimate = NO;
             rootStatusIndex = RootOnLeftStatic;
+            [self addCoverView];
         }];
     }
 }
@@ -316,6 +345,7 @@
     } completion:^(BOOL finished) {
         isMenuAnimate = NO;
         rootStatusIndex = RootOnMain;
+        [self hideCoverView];
         NSLog(@"reset OK!");
     }];
 }
@@ -335,7 +365,6 @@
 }
 
 - (void)tapGus:(UITapGestureRecognizer *)tapGes{
-
     NSLog(@"tapGes-");
     isMenuAnimate = NO;
     [self resetRootViewAndMenuView];
@@ -370,12 +399,6 @@
         panGus.delaysTouchesBegan = YES;
         panGus.cancelsTouchesInView = NO;
         [rootVC.view addGestureRecognizer:panGus];
-        
-        UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGus:)];
-        tapGes.delegate = self;
-        tapGes.numberOfTouchesRequired = 1;
-        tapGes.numberOfTapsRequired = 1;
-        [rootVC.view addGestureRecognizer:tapGes];
         
         [rootVC.view addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }

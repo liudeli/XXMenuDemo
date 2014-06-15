@@ -22,6 +22,7 @@ typedef enum : NSUInteger {
 @property(nonatomic, strong) XXLeftMenuView *leftMenuView;
 @property(nonatomic, strong) XXRightMenuView *rightMenuView;
 @property(nonatomic, strong) UIViewController *rootVC;
+@property(nonatomic, strong) UIView *coverView;
 @property(nonatomic, assign) CGRect rootViewFrame;
 @property(nonatomic, assign) CGRect leftViewFrame;
 @property(nonatomic, assign) CGRect rightViewFrame;

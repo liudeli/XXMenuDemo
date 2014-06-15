@@ -24,10 +24,10 @@
     return self;
 }
 - (void)layoutSubviews{
-    UITableView *tableList = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+    UITableView *tableList    = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     tableList.backgroundColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1];
-    tableList.delegate = self;
-    tableList.dataSource = self;
+    tableList.delegate        = self;
+    tableList.dataSource      = self;
     [self addSubview:tableList];
 }
 #pragma mark tableViewDelegate;
