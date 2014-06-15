@@ -27,8 +27,15 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        leftMenuView = [[XXLeftMenuView alloc] initWithFrame:CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue)];
-        rightMenuView = [[XXRightMenuView alloc] initWithFrame:CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue)];
+        CGRect frame;
+        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+            frame = CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, (screenHeight-20)*scaleValue);
+        }else{
+            frame = CGRectMake(0, screenHeight*(1-scaleValue)/2, menuViewWidth, screenHeight*scaleValue);
+        }
+        
+        leftMenuView = [[XXLeftMenuView alloc] initWithFrame:frame];
+        rightMenuView = [[XXRightMenuView alloc] initWithFrame:frame];
         isMenuAnimate = NO;
         rootStatusIndex = RootOnMain;
     }
@@ -194,6 +201,10 @@
 }
 
 - (void)replaceRootVC:(UIViewController *)replaceVC isFromLeft:(BOOL)isFromLeft{
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }
+
     CGRect frame = rootVC.view.frame;
     NSLog(@"frame--->>%f/%f/%f/%f/%f",frame.origin.x,frame.origin.y,frame.size.width,frame.size.height,rootVC.view.transform.tx);
     if (rootVC) {
@@ -212,6 +223,9 @@
 ////    frame.origin.x = screenWidth - menuViewWidth;
 ////    rightMenuView.view.frame = frame;
     rootVC.view.frame = frame;
+
+    DLog(@"rootVCH1--->>%f",rootVC.view.frame.size.height);
+
     [self.view addSubview:rootVC.view];
 
     UIPanGestureRecognizer *panGus = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGes:)];
@@ -293,7 +307,11 @@
         
         //rootView重置
         //CGPoint rootPoint = rootVC.view.center;
-        rootVC.view.center = self.view.center;
+        if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+            rootVC.view.center = CGPointMake(self.view.center.x, self.view.center.y - 20);
+        }else{
+            rootVC.view.center = self.view.center;
+        }
         rootVC.view.transform = CGAffineTransformMakeScale(1, 1);
     } completion:^(BOOL finished) {
         isMenuAnimate = NO;
@@ -342,6 +360,9 @@
             rootVC = nil;
         }
         rootVC = controller;
+
+        DLog(@"rootVCH--->>%f",rootVC.view.frame.size.height);
+        
         [self.view addSubview:rootVC.view];
 
         UIPanGestureRecognizer *panGus = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGes:)];

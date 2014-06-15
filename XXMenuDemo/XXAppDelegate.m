@@ -27,8 +27,13 @@
     XXMainViewController *mainVC = [[XXMainViewController alloc] init];
 //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVC];
     PushBackNavigationController *nav = [[PushBackNavigationController alloc] initWithRootViewController:mainVC];
-    
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        [[UIApplication sharedApplication] setStatusBarHidden:TRUE];
+    }
     XXMenuVC = [[XXMenuViewController alloc] initWithRootVC:nav];
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    }
     
     self.window.rootViewController = XXMenuVC;
     

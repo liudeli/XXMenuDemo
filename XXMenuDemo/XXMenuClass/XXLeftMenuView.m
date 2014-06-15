@@ -55,6 +55,9 @@
     detailVC.indexNum = indexPath.row;
     
 
+    if (SYSTEM_VERSION_LESS_THAN(@"7.0")) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }
     PushBackNavigationController *nav = [[PushBackNavigationController alloc] initWithRootViewController:detailVC];
 //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:detailVC];
     [[XXAppDelegate sharedAppDelegate].XXMenuVC replaceRootVC:nav isFromLeft:YES];

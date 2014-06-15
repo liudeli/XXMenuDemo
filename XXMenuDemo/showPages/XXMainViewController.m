@@ -45,7 +45,7 @@
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_menu"] style:UIBarButtonItemStylePlain target:self action:@selector(rightMenu:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
     
-    UILabel *bgLab = [[UILabel alloc] initWithFrame:self.view.bounds];
+    UILabel *bgLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight - 20 -44)];
     bgLab.backgroundColor = [UIColor colorWithRed:(arc4random()%255+1)/255.0 green:(arc4random()%255+1)/255.0 blue:(arc4random()%255+1)/255.0 alpha:0.6];
     bgLab.text = [NSString stringWithFormat:@"%d",indexNum];
     bgLab.textAlignment = NSTextAlignmentCenter;

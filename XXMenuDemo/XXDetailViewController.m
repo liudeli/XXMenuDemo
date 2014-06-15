@@ -33,7 +33,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, 320, 320)];
+    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
     lab.text = [NSString stringWithFormat:@"%d",indexNum];
     lab.textColor = [UIColor whiteColor];
     lab.textAlignment = NSTextAlignmentCenter;
