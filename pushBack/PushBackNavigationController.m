@@ -51,6 +51,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.interactivePopGestureRecognizer.enabled = NO;
+    }
+    
     self.delegate = self;
     self.navigationBar.translucent = NO;
     // Do any additional setup after loading the view.

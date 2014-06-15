@@ -66,7 +66,14 @@
         tapGes.numberOfTouchesRequired = 1;
         tapGes.numberOfTapsRequired    = 1;
         [_coverView addGestureRecognizer:tapGes];
-
+        
+        UIPanGestureRecognizer *panGus = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGes:)];
+        panGus.delegate = self;
+        panGus.delaysTouchesBegan = YES;
+        panGus.cancelsTouchesInView = NO;
+        [_coverView addGestureRecognizer:panGus];
+        
+        [rootVC.view addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return _coverView;
 }
@@ -357,7 +364,7 @@
     
     UINavigationController *nav = (UINavigationController *)rootVC;
 
-    int i = nav.viewControllers.count;
+    NSInteger i = nav.viewControllers.count;
     if (i > 1) {
         return NO;
     }
